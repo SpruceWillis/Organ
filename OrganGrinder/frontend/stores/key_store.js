@@ -15,6 +15,12 @@ KeyStore.__onDispatch = function(payload){
     case "REMOVE_KEY":
       _removeKey(payload.key);
       break;
+    case "REMOVE_ALL_KEYS":
+      _removeAllKeys();
+      break;
+    case "ADD_KEYS":
+      _addKeys(payload.key);
+      break;
   }
 };
 
@@ -31,6 +37,20 @@ var _addKey = function(key){
 
 var _removeKey = function(key){
   _keys.splice(_keys.indexOf(key),1);
+  KeyStore.__emitChange();
+};
+
+var _removeAllKeys = function(){
+  _keys = [];
+  KeyStore.__emitChange();
+};
+
+var _addKeys = function(keys){
+  keys.forEach(function(key){
+    if (_keys.indexOf(key) === -1){
+      _keys.push(key);
+    }
+  });
   KeyStore.__emitChange();
 };
 
