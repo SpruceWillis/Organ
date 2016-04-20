@@ -23,11 +23,15 @@ KeyStore.all = function(){
 };
 
 var _addKey = function(key){
-  _keys.push(key);
-  KeyStore.__emitChange();
+  if (_keys.indexOf(key) === -1){
+    _keys.push(key);
+    KeyStore.__emitChange();
+  }
 };
 
 var _removeKey = function(key){
   _keys.splice(_keys.indexOf(key),1);
   KeyStore.__emitChange();
 };
+
+module.exports = KeyStore;
