@@ -1,6 +1,7 @@
 var React = require('react');
 var TrackStore = require('../stores/track_store');
 var TrackPlayer = require("./track_player");
+var TrackApiAction = require("../actions/track_api_actions");
 
 var Jukebox = React.createClass({
   getInitialState: function(){
@@ -8,6 +9,7 @@ var Jukebox = React.createClass({
   },
 
   componentDidMount: function(){
+    TrackApiAction.fetchTracks();
     var self = this;
     this.listenerToken = TrackStore.addListener(function(){
       self.setState({tracks: TrackStore.all()});
@@ -22,8 +24,8 @@ var Jukebox = React.createClass({
 
   render: function() {
     return (
-      <div>
-        <ul>
+      <div className="jukebox">
+        <ul className="clear">
           {this.getTrackPlayers()}
         </ul>
       </div>

@@ -1,13 +1,15 @@
 var React = require('react');
-var TrackAction = require('../actions/track_action');
+var TrackApiAction = require('../actions/track_api_actions');
 
 var TrackPlayer = React.createClass({
 
-  playTrack:  function () {
+  playTrack:  function(event){
+    event.preventDefault();
     this.props.track.play();
   },
-  removeTrack: function(){
-    TrackAction.removeTrack(this.props.track);
+  removeTrack: function(event){
+    event.preventDefault();
+    TrackApiAction.removeTrack(this.props.track);
   },
   render: function() {
     return (

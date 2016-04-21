@@ -8,6 +8,13 @@ var TrackAction = {
     });
   },
 
+  fetchTracks: function(tracks){
+    dispatcher.dispatch({
+      actionType: "FETCH_TRACKS",
+      track: tracks
+    });
+  },
+
   removeTrack: function(track){
     dispatcher.dispatch({
       actionType: "REMOVE_TRACK",

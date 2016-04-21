@@ -1,7 +1,7 @@
 var React = require('react');
 var Track = require('../util/track');
 var KeyStore = require('../stores/key_store');
-var TrackAction = require("../actions/track_action");
+var TrackApiAction = require("../actions/track_api_actions");
 
 var Recorder = React.createClass({
   getInitialState: function(){
@@ -15,11 +15,12 @@ var Recorder = React.createClass({
   //   });
   // },
 
-  toggleRecording: function(){
+  toggleRecording: function(event){
+    event.preventDefault();
     if (this.state.isRecording){
       this.listenerToken.remove();
       this.state.track.stopRecording();
-      TrackAction.addTrack(this.state.track);
+      TrackApiAction.addTrack(this.state.track);
       this.setState({isRecording: false, track: new Track({name: "Name"}) });
     } else {
       var self = this;

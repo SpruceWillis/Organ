@@ -5,6 +5,7 @@ var KeyAction = require("../actions/key_action");
 var Track = function (attr){
   this.name = attr["name"];
   this.roll = attr["roll"] || [];
+  this.id = attr["id"];
 };
 
 Track.prototype.startRecording = function () {

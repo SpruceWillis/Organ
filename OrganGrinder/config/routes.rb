@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: "static_pages#root"
-
+  resources :tracks, only: [:create, :index, :destroy]
 
 
   # The priority is based upon order of creation: first created -> highest priority.
